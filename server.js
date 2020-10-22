@@ -1,15 +1,14 @@
 var express = require('express');
-var socket = require('socket.io');
 var app = express();
 var server = require('http').Server(app);
-var io = socket(server);
+var ioServer = require('socket.io')(server);
 var PORT = 8000;
 var data = new Map();
-app.get('/users', function () {
+app.get('/test', function () {
     console.log('hello');
 });
-io.on('connection', function (socket) {
-    console.log('socket connected', socket);
+ioServer.on('connection', function (socket) {
+    console.log('socket connected', socket.id);
 });
 server.listen(PORT, function (err) {
     if (err) {

@@ -2,7 +2,7 @@ const express = require('express')
 
 const app = express()
 const server = require('http').Server(app)
-const io = require('socket.io')(server)
+const ioServer = require('socket.io')(server)
 
 const PORT = 8000
 const data = new Map()
@@ -12,8 +12,8 @@ app.get('/test', function () {
   
 })
 
-io.on('connection', socket => {
-  console.log('socket connected', socket);
+ioServer.on('connection', socket => {
+  console.log('socket connected', socket.id);
   
 })
 
